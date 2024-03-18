@@ -9,7 +9,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/lgl8023/go-openai
+	"github.com/lgl8023/go-openai"
 	"github.com/lgl8023/go-openai/internal/test/checks"
 	"github.com/lgl8023/go-openai/jsonschema"
 )
