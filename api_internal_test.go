@@ -51,7 +51,7 @@ func TestRequestAuthHeader(t *testing.T) {
 			"Authorization",
 			"dummy-token-openai",
 			"",
-			"Bearer dummy-token-openai",
+			"Basic dummy-token-openai",
 		},
 		{
 			"OpenAIOrg",
@@ -59,7 +59,7 @@ func TestRequestAuthHeader(t *testing.T) {
 			"Authorization",
 			"dummy-token-openai",
 			"dummy-org-openai",
-			"Bearer dummy-token-openai",
+			"Basic dummy-token-openai",
 		},
 		{
 			"OpenAI",
@@ -67,7 +67,7 @@ func TestRequestAuthHeader(t *testing.T) {
 			"Authorization",
 			"dummy-token-openai",
 			"",
-			"Bearer dummy-token-openai",
+			"Basic dummy-token-openai",
 		},
 		{
 			"AzureAD",
@@ -75,7 +75,7 @@ func TestRequestAuthHeader(t *testing.T) {
 			"Authorization",
 			"dummy-token-azure",
 			"",
-			"Bearer dummy-token-azure",
+			"Basic dummy-token-azure",
 		},
 		{
 			"Azure",

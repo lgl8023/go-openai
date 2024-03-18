@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	openaiAPIURLv1                 = "https://api.openai.com/v1"
+	openaiAPIURLv1                 = ""
 	defaultEmptyMessagesLimit uint = 300
 
 	azureAPIPrefix         = "openai"
@@ -37,10 +37,10 @@ type ClientConfig struct {
 	EmptyMessagesLimit uint
 }
 
-func DefaultConfig(authToken string) ClientConfig {
+func DefaultConfig(authToken string, baseURL string) ClientConfig {
 	return ClientConfig{
 		authToken: authToken,
-		BaseURL:   openaiAPIURLv1,
+		BaseURL:   baseURL,
 		APIType:   APITypeOpenAI,
 		OrgID:     "",
 

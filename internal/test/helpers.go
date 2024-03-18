@@ -1,7 +1,7 @@
 package test
 
 import (
-	"github.com/sashabaranov/go-openai/internal/test/checks"
+	"github.com/lgl8023/go-openai/internal/test/checks"
 
 	"net/http"
 	"os"
@@ -48,6 +48,6 @@ type TokenRoundTripper struct {
 // error, the Client's Get, Head, Post, and PostForm methods return the same
 // error.
 func (t *TokenRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
-	req.Header.Set("Authorization", "Bearer "+t.Token)
+	req.Header.Set("Authorization", "Basic "+t.Token)
 	return t.Fallback.RoundTrip(req)
 }

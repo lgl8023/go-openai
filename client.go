@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"strings"
 
-	utils "github.com/sashabaranov/go-openai/internal"
+	utils "github.com/lgl8023/go-openai/internal"
 )
 
 // Client is OpenAI GPT-3 API client.
@@ -39,8 +39,8 @@ func (h *httpHeader) GetRateLimitHeaders() RateLimitHeaders {
 }
 
 // NewClient creates new OpenAI API client.
-func NewClient(authToken string) *Client {
-	config := DefaultConfig(authToken)
+func NewClient(authToken string, baseURL string) *Client {
+	config := DefaultConfig(authToken, baseURL)
 	return NewClientWithConfig(config)
 }
 
@@ -58,8 +58,8 @@ func NewClientWithConfig(config ClientConfig) *Client {
 // NewOrgClient creates new OpenAI API client for specified Organization ID.
 //
 // Deprecated: Please use NewClientWithConfig.
-func NewOrgClient(authToken, org string) *Client {
-	config := DefaultConfig(authToken)
+func NewOrgClient(authToken, org string, baseURL string) *Client {
+	config := DefaultConfig(authToken, baseURL)
 	config.OrgID = org
 	return NewClientWithConfig(config)
 }
@@ -177,7 +177,7 @@ func (c *Client) setCommonHeaders(req *http.Request) {
 		req.Header.Set(AzureAPIKeyHeader, c.config.authToken)
 	} else if c.config.authToken != "" {
 		// OpenAI or Azure AD authentication
-		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.config.authToken))
+		req.Header.Set("Authorization", fmt.Sprintf("Basic %s", c.config.authToken))
 	}
 	if c.config.OrgID != "" {
 		req.Header.Set("OpenAI-Organization", c.config.OrgID)
