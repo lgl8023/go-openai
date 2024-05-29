@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 
 	respUrl, err := client.CreateImage(
 		context.Background(),

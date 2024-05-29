@@ -15,7 +15,7 @@ import (
 )
 
 func Example() {
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{
@@ -37,7 +37,7 @@ func Example() {
 }
 
 func ExampleClient_CreateChatCompletionStream() {
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 
 	stream, err := client.CreateChatCompletionStream(
 		context.Background(),
@@ -78,7 +78,7 @@ func ExampleClient_CreateChatCompletionStream() {
 }
 
 func ExampleClient_CreateCompletion() {
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 	resp, err := client.CreateCompletion(
 		context.Background(),
 		openai.CompletionRequest{
@@ -95,7 +95,7 @@ func ExampleClient_CreateCompletion() {
 }
 
 func ExampleClient_CreateCompletionStream() {
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 	stream, err := client.CreateCompletionStream(
 		context.Background(),
 		openai.CompletionRequest{
@@ -129,7 +129,7 @@ func ExampleClient_CreateCompletionStream() {
 }
 
 func ExampleClient_CreateTranscription() {
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 	resp, err := client.CreateTranscription(
 		context.Background(),
 		openai.AudioRequest{
@@ -145,7 +145,7 @@ func ExampleClient_CreateTranscription() {
 }
 
 func ExampleClient_CreateTranscription_captions() {
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 
 	resp, err := client.CreateTranscription(
 		context.Background(),
@@ -172,7 +172,7 @@ func ExampleClient_CreateTranscription_captions() {
 }
 
 func ExampleClient_CreateTranslation() {
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 	resp, err := client.CreateTranslation(
 		context.Background(),
 		openai.AudioRequest{
@@ -188,7 +188,7 @@ func ExampleClient_CreateTranslation() {
 }
 
 func ExampleClient_CreateImage() {
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 
 	respURL, err := client.CreateImage(
 		context.Background(),
@@ -207,7 +207,7 @@ func ExampleClient_CreateImage() {
 }
 
 func ExampleClient_CreateImage_base64() {
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 
 	resp, err := client.CreateImage(
 		context.Background(),
@@ -270,7 +270,7 @@ func ExampleClientConfig_clientWithProxy() {
 }
 
 func Example_chatbot() {
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 
 	req := openai.ChatCompletionRequest{
 		Model: openai.GPT3Dot5Turbo,

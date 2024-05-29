@@ -24,13 +24,13 @@ func (*failingRequestBuilder) Build(_ context.Context, _, _ string, _ any, _ htt
 
 func TestClient(t *testing.T) {
 	const mockToken = "mock token"
-	client := NewClient(mockToken)
+	client := NewClient(mockToken, "", "")
 	if client.config.authToken != mockToken {
 		t.Errorf("Client does not contain proper token")
 	}
 
 	const mockOrg = "mock org"
-	client = NewOrgClient(mockToken, mockOrg)
+	client = NewOrgClient(mockToken, mockOrg, "", "")
 	if client.config.authToken != mockToken {
 		t.Errorf("Client does not contain proper token")
 	}
@@ -131,7 +131,7 @@ func TestHandleErrorResp(t *testing.T) {
 	t.Log(errRes.Error, "nil pointer check Pass")
 
 	const mockToken = "mock token"
-	client := NewClient(mockToken)
+	client := NewClient(mockToken, "", "")
 
 	testCases := []struct {
 		name     string

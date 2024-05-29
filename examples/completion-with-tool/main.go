@@ -11,7 +11,7 @@ import (
 
 func main() {
 	ctx := context.Background()
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 
 	// describe the function & its inputs
 	params := jsonschema.Definition{

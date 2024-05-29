@@ -19,7 +19,7 @@ func main() {
 		return
 	}
 
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"), "", "")
 	resp, err := client.CreateTranscription(
 		context.Background(),
 		openai.AudioRequest{
