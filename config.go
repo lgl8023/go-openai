@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	openaiAPIURLv1                 = ""
+	openaiAPIURLv1                 = "https://api.openai.com/v1"
 	defaultEmptyMessagesLimit uint = 300
 
 	azureAPIPrefix         = "openai"
@@ -25,8 +25,8 @@ const AzureAPIKeyHeader = "api-key"
 
 // ClientConfig is a configuration of a client.
 type ClientConfig struct {
-	authToken string
-
+	authToken            string
+	ProxyURL             string
 	BaseURL              string
 	OrgID                string
 	APIType              APIType
@@ -37,13 +37,13 @@ type ClientConfig struct {
 	EmptyMessagesLimit uint
 }
 
-func DefaultConfig(authToken string, baseURL string) ClientConfig {
+func DefaultConfig(authToken string) ClientConfig {
 	return ClientConfig{
-		authToken: authToken,
-		BaseURL:   baseURL,
-		APIType:   APITypeOpenAI,
-		OrgID:     "",
-
+		authToken:  authToken,
+		BaseURL:    openaiAPIURLv1,
+		APIType:    APITypeOpenAI,
+		OrgID:      "",
+		ProxyURL:   "",
 		HTTPClient: &http.Client{},
 
 		EmptyMessagesLimit: defaultEmptyMessagesLimit,

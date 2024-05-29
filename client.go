@@ -45,8 +45,10 @@ type RawResponse struct {
 }
 
 // NewClient creates new OpenAI API client.
-func NewClient(authToken string, baseURL string) *Client {
-	config := DefaultConfig(authToken, baseURL)
+func NewClient(authToken string, baseURL string, proxyURL string) *Client {
+	config := DefaultConfig(authToken)
+	config.BaseURL = baseURL
+	config.ProxyURL = proxyURL
 	return NewClientWithConfig(config)
 }
 
@@ -64,9 +66,11 @@ func NewClientWithConfig(config ClientConfig) *Client {
 // NewOrgClient creates new OpenAI API client for specified Organization ID.
 //
 // Deprecated: Please use NewClientWithConfig.
-func NewOrgClient(authToken, org string, baseURL string) *Client {
-	config := DefaultConfig(authToken, baseURL)
+func NewOrgClient(authToken, org string, baseURL string, proxyURL string) *Client {
+	config := DefaultConfig(authToken)
 	config.OrgID = org
+	config.BaseURL = baseURL
+	config.ProxyURL = proxyURL
 	return NewClientWithConfig(config)
 }
 
@@ -108,7 +112,12 @@ func (c *Client) newRequest(ctx context.Context, method, url string, setters ...
 	if err != nil {
 		return nil, err
 	}
-	c.setCommonHeaders(req)
+	c.setCommonHeaders(req) // Set request header
+	// if c.config.ProxyURL exist add proxys
+	if c.config.ProxyURL != "" {
+		c.SetProxyURL(c.config.ProxyURL)
+	}
+
 	return req, nil
 }
 
