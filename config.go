@@ -25,6 +25,35 @@ const (
 const AzureAPIKeyHeader = "api-key"
 
 const defaultAssistantVersion = "v2" // upgrade to v2 to support vector store
+// CustomHTTPClient 实现了 HTTPDoer 接口
+type CustomHTTPClient struct {
+	client http.Client
+}
+
+// NewCustomHTTPClient 创建一个新的 CustomHTTPClient 实例
+func NewCustomHTTPClient(transport http.RoundTripper) *CustomHTTPClient {
+	if transport == nil {
+		transport = http.DefaultTransport
+	}
+	return &CustomHTTPClient{
+		client: http.Client{
+			Transport: transport,
+		},
+	}
+}
+
+// Do 实现 HTTPDoer 接口的 Do 方法
+func (c *CustomHTTPClient) Do(req *http.Request) (*http.Response, error) {
+	return c.client.Do(req)
+}
+
+// SetTransport 动态设置 Transport
+func (c *CustomHTTPClient) SetTransport(transport http.RoundTripper) {
+	if transport == nil {
+		transport = http.DefaultTransport
+	}
+	c.client.Transport = transport
+}
 
 type HTTPDoer interface {
 	Do(req *http.Request) (*http.Response, error)

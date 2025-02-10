@@ -558,7 +558,7 @@ func TestClient_baseURLWithAzureDeployment(t *testing.T) {
 			"https://test.openai.azure.com/openai/deployments/UNKNOWN",
 		},
 	}
-	client := NewClient("")
+	client := NewClient("", "", "")
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if gotNewBaseURL := client.baseURLWithAzureDeployment(
